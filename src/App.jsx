@@ -1,13 +1,18 @@
 import React from "react";
-import Starter from "./tutorial/02-useEffect/starter/05-cleanup-function";
+
+import List from "./tutorial/05-leverage-javascript/starter/List";
 
 function App() {
   return (
     <>
-      {/* <h2>Advanced React</h2> */}
-      <Starter />
+      <div className="container">
+        <h2>Leverage Javascript</h2>
+        <List/>
+      </div>
     </>
   );
 }
 
 export default App;
+
+
