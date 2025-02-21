@@ -1,14 +1,11 @@
 import React from "react";
 
-import List from "./tutorial/05-leverage-javascript/starter/List";
+import  Starter from "../src/tutorial/06-forms/starter/04-other-inputs"
 
 function App() {
   return (
     <>
-      <div className="container">
-        <h2>Leverage Javascript</h2>
-        <List/>
-      </div>
+      <Starter/>
     </>
   );
 }
