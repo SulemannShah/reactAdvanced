@@ -16,7 +16,13 @@ const reducer = (state, action) => {
     return { ...state, people: [] };
   }
   if (action.type === RESET_LIST) {
-    return {...state, people:data}
+    return { ...state, people: data };
+  }
+  if (action.type === REMOVE_ITEM) {
+    let newPeople = state.people.filter(
+      (person) => person.id !== action.payload.id
+    );
+    return { ...state, people: newPeople };
   }
   // return state
   throw new Error(`No matchind "${action} -action type `);
@@ -26,18 +32,15 @@ const ReducerBasics = () => {
   const [state, dispatch] = useReducer(reducer, defaultState);
 
   const removeItem = (id) => {
-    // let newPeople = people.filter((person) => person.id !== id);
-    // setPeople(newPeople);
+    dispatch({ type: REMOVE_ITEM, payload: { id } });
   };
 
   const clearList = () => {
     dispatch({ type: CLEAR_LIST });
-    // setPeople([]);
   };
 
   const resetList = () => {
     dispatch({ type: RESET_LIST });
-    // setPeople(data);
   };
   console.log(state);
 
@@ -52,13 +55,14 @@ const ReducerBasics = () => {
           </div>
         );
       })}
-      {people.length < 1 ? (
+
+      {state.people.length < 1 ? (
         <button
           className="btn"
           style={{ marginTop: "2rem" }}
           onClick={resetList}
         >
-          clear items
+          reset
         </button>
       ) : (
         <button
@@ -66,7 +70,7 @@ const ReducerBasics = () => {
           style={{ marginTop: "2rem" }}
           onClick={clearList}
         >
-          clear items
+          clear
         </button>
       )}
     </div>
